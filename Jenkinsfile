@@ -1,5 +1,4 @@
 pipeline {
-    agent any
     parameters([
         choice(
             choices: ['v1', 'v2', 'v3'],
@@ -7,9 +6,12 @@ pipeline {
         )
 
     ])
-    docker {
-        image 'node:18-alpine'
+    agent {
+        docker {
+            image 'node:18-alpine'
+        }
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -20,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Simulando build...'
-                sh "echo $version > versao.txt"
+                sh "echo ${params.version} > versao.txt"
             }
         }
         stage('Test') {
