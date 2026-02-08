@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'O Jenkins baixou o código automaticamente!'
+                echo 'Build disparado pelo Git! pt 2'
                 sh 'ls -la'
             }
         }
