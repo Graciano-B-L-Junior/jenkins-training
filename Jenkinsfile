@@ -1,15 +1,17 @@
 pipeline {
-    parameters([
-        choice(
-            choices: ['v1', 'v2', 'v3'],
-            name: 'version'
-        )
 
-    ])
     agent {
         docker {
             image 'node:18-alpine'
         }
+    }
+    
+    parameters {
+        choice(
+            name: 'version',
+            choices: ['v1', 'v2', 'v3'],
+            description: 'Escolha a versão'
+        )
     }
 
     stages {
